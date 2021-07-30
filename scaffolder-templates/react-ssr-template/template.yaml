@@ -60,11 +60,11 @@ spec:
 
     - id: publish
       name: Publish
-      action: publish:github
+      action: publish:azure
       input:
-        allowedHosts: ['github.com']
-        description: 'This is {{ parameters.component_id }}'
         repoUrl: '{{ parameters.repoUrl }}'
+        description: 'This is {{ parameters.component_id }}'
+        defaultBranch: 'main'
 
     - id: register
       name: Register
@@ -74,5 +74,6 @@ spec:
         catalogInfoPath: '/catalog-info.yaml'
 
   output:
-    remoteUrl: '{{ steps.publish.output.remoteUrl }}'
+    remoteUrl: '{{ steps.publish.output.remoteUrl }}'    
+    repoContentsUrl: '{{ steps.publish.output.repoContentsUrl }}'
     entityRef: '{{ steps.register.output.entityRef }}'
