@@ -14,6 +14,7 @@ spec:
     - title: Provide some simple information
       required:
         - component_id
+        - repo_name
       properties:
         component_id:
           title: Name
@@ -23,17 +24,10 @@ spec:
           title: Description
           type: string
           description: Help others understand what this website is for.
-    - title: Choose a location
-      required:
-        - repoUrl
-      properties:
-        repoUrl:
-          title: Repository Location
+        repo_name:
+          title: Azure DevOps Repository Name
           type: string
-          ui:field: RepoUrlPicker
-          ui:options:
-            allowedHosts:
-              - dev.azure.com
+          description: Your Azure DevOps repository name
             
   steps:
     - id: template
@@ -46,14 +40,14 @@ spec:
         values:
           component_id: '{{ parameters.component_id }}'
           description: '{{ parameters.description }}'
-          destination: '{{ parseRepoUrl parameters.repoUrl }}'
+          destination: '{{ parseRepoUrl dev.azure.com?owner=ProductionAI&repo={{ parameters.repo_name }}&organization=basf4dev }}'
           owner: 'team-singularity'
 
     - id: publish
       name: Publish
       action: publish:azure
       input:
-        repoUrl: '{{ parameters.repoUrl }}'
+        repoUrl: '{{ dev.azure.com?owner=ProductionAI&repo={{ parameters.repo_name }}&organization=basf4dev }}'
         description: 'This is {{ parameters.component_id }}'
         defaultBranch: 'main'
 
