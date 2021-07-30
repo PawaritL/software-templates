@@ -24,10 +24,10 @@ spec:
           title: Description
           type: string
           description: Help others understand what this website is for.
-        repo_name:
-          title: Azure DevOps Repository Name
+        repository_name:
+          title: Azure DevOps Repo Name
           type: string
-          description: Your Azure DevOps repository name
+          description: Azure DevOps Repo name for your application. If your domain may involve multiple applications, please think of a unique but easily identifiable repo name. 
             
   steps:
     - id: template
@@ -35,19 +35,17 @@ spec:
       action: fetch:template
       input:
         url: ./skeleton
-        copyWithoutRender:
-          - .github/workflows/*
         values:
           component_id: '{{ parameters.component_id }}'
           description: '{{ parameters.description }}'
-          destination: 'dev.azure.com?owner=ProductionAI&repo={{ parameters.repo_name }}&organization=basf4dev'
+          destination: 'dev.azure.com?owner=ProductionAI&repo={{ parameters.repository_name }}&organization=basf4dev'
           owner: 'team-singularity'
 
     - id: publish
       name: Publish
       action: publish:azure
       input:
-        repoUrl: 'dev.azure.com?owner=ProductionAI&repo={{ parameters.repo_name }}&organization=basf4dev'
+        repoUrl: 'dev.azure.com?owner=ProductionAI&repo={{ parameters.repository_name }}&organization=basf4dev'
         description: 'This is {{ parameters.component_id }}'
         defaultBranch: 'main'
 
