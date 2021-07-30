@@ -40,7 +40,7 @@ spec:
         values:
           component_id: '{{ parameters.component_id }}'
           description: '{{ parameters.description }}'
-          destination: '{{ parseRepoUrl dev.azure.com?owner=ProductionAI&repo=backstage-bla&organization=basf4dev }}'
+          destination: 'dev.azure.com?owner=ProductionAI&repo=backstage-bla&organization=basf4dev'
           owner: 'team-singularity'
 
     - id: publish
