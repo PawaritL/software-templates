@@ -40,14 +40,14 @@ spec:
         values:
           component_id: '{{ parameters.component_id }}'
           description: '{{ parameters.description }}'
-          destination: '{{ parseRepoUrl dev.azure.com?owner=ProductionAI&repo={{ parameters.repo_name }}&organization=basf4dev }}'
+          destination: '{{ parseRepoUrl dev.azure.com?owner=ProductionAI&repo=backstage-bla&organization=basf4dev }}'
           owner: 'team-singularity'
 
     - id: publish
       name: Publish
       action: publish:azure
       input:
-        repoUrl: 'dev.azure.com?owner=ProductionAI&repo={{ parameters.repo_name }}&organization=basf4dev'
+        repoUrl: 'dev.azure.com?owner=ProductionAI&repo=backstage-bla&organization=basf4dev'
         description: 'This is {{ parameters.component_id }}'
         defaultBranch: 'main'
 
