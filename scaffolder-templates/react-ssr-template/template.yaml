@@ -14,7 +14,6 @@ spec:
     - title: Provide some simple information
       required:
         - component_id
-        - owner
       properties:
         component_id:
           title: Name
@@ -24,14 +23,6 @@ spec:
           title: Description
           type: string
           description: Help others understand what this website is for.
-        owner:
-          title: Owner
-          type: string
-          description: Owner of the component
-          ui:field: OwnerPicker
-          ui:options:
-            allowedKinds:
-              - Group
     - title: Choose a location
       required:
         - repoUrl
@@ -42,8 +33,12 @@ spec:
           ui:field: RepoUrlPicker
           ui:options:
             allowedHosts:
-              - github.com
               - dev.azure.com
+            organization:
+              - basf4dev
+            owner:
+              - ProductionAI
+            
   steps:
     - id: template
       name: Fetch Skeleton + Template
@@ -56,7 +51,7 @@ spec:
           component_id: '{{ parameters.component_id }}'
           description: '{{ parameters.description }}'
           destination: '{{ parseRepoUrl parameters.repoUrl }}'
-          owner: '{{ parameters.owner }}'
+          owner: 'team-singularity'
 
     - id: publish
       name: Publish
