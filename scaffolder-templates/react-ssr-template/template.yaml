@@ -34,10 +34,6 @@ spec:
           ui:options:
             allowedHosts:
               - dev.azure.com
-            organization:
-              - basf4dev
-            owner:
-              - ProductionAI
             
   steps:
     - id: template
